@@ -3,38 +3,42 @@ package com.pinelabs.pluralsdk.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pinelabs.pluralsdk.R
+import com.pinelabs.pluralsdk.api.RecyclerViewPaymentOptionData
 
-class PaymentOptionsAdapter(private val mList: List<String>) : RecyclerView.Adapter<PaymentOptionsAdapter.ViewHolder>() {
+class PaymentOptionsAdapter(private val items: List<RecyclerViewPaymentOptionData>, private val itemClickListener: OnItemClickListener) :
+    RecyclerView.Adapter<PaymentOptionsAdapter.PaymentOptionDataHolder>() {
 
-    // create new views
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        // inflates the card_view_design view
-        // that is used to hold list item
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.payment_option_list_item, parent, false)
+    inner class PaymentOptionDataHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PaymentOptionDataHolder {
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.payment_option_list_item, parent, false)
+        return PaymentOptionDataHolder(view)
     }
 
-    // binds the list items to a view
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PaymentOptionDataHolder, position: Int) {
+        val currentItem: RecyclerViewPaymentOptionData = items[position]
 
-        val ItemsViewModel = mList[position]
-        // sets the text to the textview from our itemHolder class
-        holder.textView.text = ItemsViewModel
+        val imgPaymentIcon: ImageView = holder.itemView.findViewById(R.id.img_payment_icon)
+        imgPaymentIcon.setImageResource(currentItem.payment_image)
 
+        val tvPaymentOption: TextView = holder.itemView.findViewById(R.id.txt_payment_option)
+        tvPaymentOption.text = currentItem.payment_option
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(currentItem)
+        }
     }
 
-    // return the number of the items in the list
     override fun getItemCount(): Int {
-        return mList.size
+        return items.size
     }
 
-    // Holds the views for adding it to image and text
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val textView: TextView = itemView.findViewById(R.id.txt_payment_option)
+    interface OnItemClickListener {
+        fun onItemClick(item: RecyclerViewPaymentOptionData?)
     }
+
 }

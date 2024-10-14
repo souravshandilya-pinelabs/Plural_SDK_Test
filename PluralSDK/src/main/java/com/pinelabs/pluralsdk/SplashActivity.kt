@@ -24,7 +24,7 @@ class SplashActivity : Activity() {
                 i.putExtra(TOKEN, token)
                 startActivity(i)
             }
-        }, 5000)
+        }, 2500)
 
     }
 }

@@ -39,6 +39,7 @@ class TestAppMainActivity : Activity() {
 
         btn_startPayment.setOnClickListener {
             generateToken()
+            //PluralSDKManager().startPayment(this@TestAppMainActivity, "")
         }
 
     }

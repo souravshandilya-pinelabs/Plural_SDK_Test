@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/curved_header"
     android:backgroundTint="#500080"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_pic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:clipToOutline="true"
+        android:src="@drawable/user"
+        app:shapeAppearanceOverlay="@style/roundedCornerImage"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -19,8 +22,9 @@
         android:id="@+id/txt_merchant_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:layout_marginLeft="20dp"
+        android:text="Apple"
+        android:textSize="20dp"
+        android:layout_marginLeft="15dp"
         android:textColor="@color/white"
         android:fontFamily="sans-serif-medium"
         app:layout_constraintLeft_toRightOf="@+id/img_pic"
@@ -31,10 +35,14 @@
         android:id="@+id/txt_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Amount"
-        android:layout_marginTop="20dp"
+        android:text="₹ 1,00,999.50"
+        android:textSize="30dp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="10dp"
         android:textColor="@color/white"
+        android:layout_marginBottom="40dp"
         app:layout_constraintLeft_toLeftOf="@+id/img_pic"
-        app:layout_constraintTop_toBottomOf="@+id/img_pic"/>
+        app:layout_constraintTop_toBottomOf="@+id/img_pic"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

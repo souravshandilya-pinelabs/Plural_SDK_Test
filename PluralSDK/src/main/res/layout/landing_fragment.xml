@@ -41,12 +41,12 @@
         android:id="@+id/txt_payment_option"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Payment Options"
+        android:text="@string/payment_option"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-medium"
         android:textColor="@color/black"
-        android:textSize="14dp"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/header"
         app:layout_constraintLeft_toLeftOf="parent"/>
 

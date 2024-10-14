@@ -8,6 +8,7 @@ class PluralSDKManager {
     fun startPayment(context: Context, token: String) {
         val intent = Intent(context, SplashActivity::class.java)
         intent.putExtra(TOKEN, token)
+        //val intent = Intent(context, LandingActivity::class.java)
         context.startActivity(intent)
     }
 }

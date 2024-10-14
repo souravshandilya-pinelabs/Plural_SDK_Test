@@ -1,7 +1,9 @@
 package com.pinelabs.pluralsdk
 
 import android.app.Activity
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -21,7 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class LandingActivity : Activity(), PaymentOptionsAdapter.OnItemClickListener {
+class LandingActivityFragment : Activity(), PaymentOptionsAdapter.OnItemClickListener {
 
     private lateinit var token : String
 
@@ -47,7 +49,7 @@ class LandingActivity : Activity(), PaymentOptionsAdapter.OnItemClickListener {
         recyclerPaymentOptions = findViewById(R.id.recycler_payment_options)
 
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        val myRecyclerViewAdapter = PaymentOptionsAdapter(populatePaymentData(), this@LandingActivity)
+        val myRecyclerViewAdapter = PaymentOptionsAdapter(populatePaymentData(), this@LandingActivityFragment)
         recyclerPaymentOptions.adapter = myRecyclerViewAdapter
         recyclerPaymentOptions.layoutManager = layoutManager
         val dividerItemDecoration: ItemDecoration = DividerItemDecorator(ContextCompat.getDrawable(this, R.drawable.divider)!!)
@@ -63,26 +65,30 @@ class LandingActivity : Activity(), PaymentOptionsAdapter.OnItemClickListener {
             override fun onResponse(call: Call<FetchResponse>, response: Response<FetchResponse>) {
 
                 if (response.isSuccessful && response.body()!=null){
-                    Toast.makeText(this@LandingActivity, "Success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LandingActivityFragment, "Success", Toast.LENGTH_SHORT).show()
                     val response = response.body()
-                    setViews(response!!.merchantInfo.merchantName, response!!.paymentData.originalTxnAmount.amount)
+                    setViews(response!!)
                 } else {
-                    Toast.makeText(this@LandingActivity, "Error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LandingActivityFragment, "Error", Toast.LENGTH_SHORT).show()
 
                 }
             }
 
             override fun onFailure(call: Call<FetchResponse>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(this@LandingActivity, "Failure", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LandingActivityFragment, "Failure", Toast.LENGTH_SHORT).show()
             }
         })
 
     }
 
-    private fun setViews(merchantName:String, transactionAmount: String) {
-        txtMerchantname.text = merchantName
-        txtTransactionamount.text = getString(R.string.rs)+" "+transactionAmount
+    private fun setViews(fetchResponse: FetchResponse) {
+        val imageBytes = Base64.decode(fetchResponse.merchantBrandingData.logo.imageContent, Base64.DEFAULT)
+        val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+        imgMerchantimage.setImageBitmap(decodedImage)
+
+        txtMerchantname.text = fetchResponse.merchantInfo.merchantName
+        txtTransactionamount.text = getString(R.string.rs)+fetchResponse.paymentData.originalTxnAmount
     }
 
     private fun populatePaymentData():List<RecyclerViewPaymentOptionData>{
