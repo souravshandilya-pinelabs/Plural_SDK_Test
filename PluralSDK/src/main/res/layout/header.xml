@@ -6,7 +6,7 @@
     android:backgroundTint="#500080"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/img_pic"
         android:layout_width="50dp"
         android:layout_height="50dp"

@@ -19,6 +19,6 @@ data class Logo(val imageSize:String, val imageContent:String)
 data class BrandTheme(val color:String)
 
 data class RecyclerViewPaymentOptionData(
-    val payment_image: Int,
-    val payment_option: String
+    val payment_image: Int = -1,
+    val payment_option: String = ""
 )

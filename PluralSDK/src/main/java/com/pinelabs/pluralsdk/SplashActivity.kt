@@ -20,11 +20,12 @@ class SplashActivity : Activity() {
 
         Timer().schedule(object : TimerTask() {
             override fun run() {
-                val i: Intent = Intent(applicationContext, LandingActivity::class.java)
+                val i = Intent(applicationContext, LandingActivity::class.java)
                 i.putExtra(TOKEN, token)
                 startActivity(i)
+                finish()
             }
-        }, 2500)
+        }, 2400)
 
     }
 }

@@ -2,30 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeightLarge">
+    android:layout_height="80dp">
 
-    <ImageView
-        android:id="@+id/img_payment_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:contentDescription="Icon"
-        android:background="@color/shimmer_grey" />
-
-    <TextView
-        android:id="@+id/txt_payment_option"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toEndOf="@id/img_payment_icon"
-        android:layout_toRightOf="@id/img_payment_icon"
-        android:gravity="center_vertical"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        android:background="@color/shimmer_grey"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/shimmer_grey"
+        android:layout_margin="20dp"/>
 
 </RelativeLayout>
