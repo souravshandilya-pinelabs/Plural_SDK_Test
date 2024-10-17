@@ -13,7 +13,7 @@ object RetrofitInstance {
         val client = OkHttpClient()
         val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val clientBuilder: OkHttpClient.Builder =
-            client.newBuilder().addInterceptor(interceptor as HttpLoggingInterceptor)
+            client.newBuilder().addInterceptor(interceptor)
 
         return Retrofit.Builder().baseUrl(BASE_URL_EXTERNAL)
             .addConverterFactory(GsonConverterFactory.create())

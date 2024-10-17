@@ -64,7 +64,7 @@ dependencies {
     implementation(libs.retrofit.converter.gson)
     implementation(libs.retrofit.logging.interceptor)
     implementation(libs.shimmer)
-
+    //implementation(libs.plural)
     implementation(project(":PluralSDK"))
 
     testImplementation(libs.junit)

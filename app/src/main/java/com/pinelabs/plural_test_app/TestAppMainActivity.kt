@@ -15,7 +15,6 @@ import com.pinelabs.plural_sdk_android_testapp.api.model.OrderResponse
 import com.pinelabs.plural_sdk_android_testapp.api.model.TokenFailure
 import com.pinelabs.plural_sdk_android_testapp.api.model.TokenResponse
 import com.pinelabs.pluralsdk.PluralSDKManager
-import com.pinelabs.pluralsdk.api.Service
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

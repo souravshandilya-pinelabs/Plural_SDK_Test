@@ -64,8 +64,7 @@ class LandingActivity : FragmentActivity(){
             override fun onResponse(call: Call<FetchResponse>, response: Response<FetchResponse>) {
                 if (response.isSuccessful && response.body()!=null){
                     Toast.makeText(this@LandingActivity, "Success", Toast.LENGTH_SHORT).show()
-                    val response = response.body()
-                    setViews(response!!)
+                    setViews(response.body()!!)
                 } else {
                     Toast.makeText(this@LandingActivity, "Error", Toast.LENGTH_SHORT).show()
                 }
